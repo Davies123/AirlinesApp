@@ -1,0 +1,29 @@
+
+
+<nav class="navbar">
+    <div class="h2">
+        Countries 
+        <button type="button" (click)="editCountry(Action[Action.New], 0)" class="btn btn-primary btn-md float-right align-bottom">Create New Country</button>
+    </div>    
+</nav>
+
+<table class="table-airline table">
+      <thead>
+          <tr>            
+            <th>Country Name</th>
+            <th></th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let country of countries">
+              <td>{{country.Name}}</td>
+              <td>     
+                <div class="btn-group" role="group">             
+                  <button type="button" (click)="editCountry(Action[Action.Edit], country.ID)" class="btn btn-sm btn-link">Edit</button>|
+                  <button type="button" (click)="editCountry(Action[Action.Detail], country.ID)" class="btn btn-sm btn-link">Details</button>|
+                  <button type="button" (click)="editCountry(Action[Action.Delete], country.ID)" class="btn btn-sm btn-link">Delete</button>
+                </div>
+              </td>
+          </tr>
+      </tbody>
+  </table>

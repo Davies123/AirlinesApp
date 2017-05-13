@@ -1,0 +1,30 @@
+
+<nav class="navbar">
+    <div class="h2">
+        States 
+        <button type="button" (click)="editState(Action[Action.New], 0)" class="btn btn-primary btn-md float-right align-bottom">Create New State</button>
+    </div>    
+</nav>
+
+<table class="table-airline table">
+      <thead>
+          <tr>            
+            <th>State Name</th>
+            <th>Country Name</th>
+            <th></th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let state of states">
+              <td>{{state.Name}}</td>
+              <td>{{state.Country.Name}}</td>
+              <td>        
+                <div class="btn-group" role="group">          
+                  <button type="button" (click)="editState(Action[Action.Edit], state.ID)" class="btn btn-sm btn-link">Edit</button>|
+                  <button type="button" (click)="editState(Action[Action.Detail], state.ID)" class="btn btn-sm btn-link">Details</button>|
+                  <button type="button" (click)="editState(Action[Action.Delete], state.ID)" class="btn btn-sm btn-link">Delete</button>
+                </div>
+              </td>
+          </tr>
+      </tbody>
+  </table>

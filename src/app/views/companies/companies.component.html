@@ -1,0 +1,31 @@
+<nav class="navbar">
+    <div class="h2">
+        {{title}}s
+        <button type="button" (click)="editCompany(Action[Action.New], typeId, 0)" class="btn btn-primary btn-md float-right align-bottom">Create New {{title}}</button>
+    </div>    
+</nav>
+
+<table class="table-airline table">
+      <thead>
+          <tr>            
+            <th>Company</th>
+            <th>Description</th>
+            <th>Country</th>
+            <th></th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let company of companies">
+              <td><img [src]="displayImage(company.Logo)"/></td>
+              <td>{{company.Description}}</td>
+              <td>{{company.Country.Name}}</td>
+              <td>                
+                <div class="btn-group" role="group">  
+                    <button type="button" (click)="editCompany(Action[Action.Edit], typeId, company.ID)" class="btn btn-sm btn-link">Edit</button>|
+                    <button type="button" (click)="editCompany(Action[Action.Detail], typeId, company.ID)" class="btn btn-sm btn-link">Details</button>|
+                    <button type="button" (click)="editCompany(Action[Action.Delete], typeId, company.ID)" class="btn btn-sm btn-link">Delete</button>
+                </div>
+              </td>
+          </tr>
+      </tbody>
+  </table>

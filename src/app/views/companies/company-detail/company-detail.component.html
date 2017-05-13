@@ -1,0 +1,92 @@
+
+<form (ngSubmit)="submitCompany()">
+  <div class="form-airline form-horizontal">
+        <h4>{{title}}</h4>
+        <hr />    
+    <div class="form-group row">   
+      <input type="hidden" class="form-control" placeholder="ID" [(ngModel)]="company.ID" name="ID">
+    </div> 
+    <div class="form-group row">   
+        <label for="Name" class="col-2 col-form-label">Company Name</label>
+        <div class="col-5">
+          <input type="text" class="form-control" placeholder="Company Name" [(ngModel)]="company.Name" name="Name" *ngIf="action != Action[Action.Detail] && action != Action[Action.Delete]" required="true">
+          <label for="Name" *ngIf="action != Action[Action.New] && action != Action[Action.Edit]" class="col-5 col-form-label">{{company.Name}}</label>
+        </div>        
+    </div>     
+    <div class="form-group row">   
+        <label for="Description" class="col-2 col-form-label">Company Description</label>
+        <div class="col-5">
+          <textarea  class="form-control" placeholder="Company Description" [(ngModel)]="company.Description" name="Description" rows="4" *ngIf="action != Action[Action.Detail] && action != Action[Action.Delete]" required="true">
+          </textarea>
+          <span class="form-control no-border" *ngIf="action != Action[Action.New] && action != Action[Action.Edit]">{{company.Description}}</span>
+        </div>        
+    </div>      
+    <div class="form-group row">   
+        <label for="CountryName" class="col-2 col-form-label">Country Name</label>
+        <div class="col-5">
+          <select class="form-control" 
+                    [(ngModel)]="company.CountryID" 
+                    name="CountryName" 
+                    *ngIf="action != Action[Action.Detail] && action != Action[Action.Delete]" 
+                    (ngModelChange)="countryChange($event)"                     
+                    required="true">
+            <option *ngFor="let country of countries" value={{country.ID}}>
+              {{country.Name}}
+            </option>
+          </select>                    
+          <label for="Name" *ngIf="action != Action[Action.New] && action != Action[Action.Edit]" class="col-5 col-form-label">{{company.Country.Name}}</label>
+        </div>        
+    </div>  
+    <div class="form-group row">   
+        <label for="StateName" class="col-2 col-form-label">State Name</label>
+        <div class="col-5">
+          <select class="form-control" [(ngModel)]="company.StateID" name="StateName" *ngIf="action != Action[Action.Detail] && action != Action[Action.Delete]" required="true">
+            <option *ngFor="let state of statesFilter" value={{state.ID}}>
+              {{state.Name}}
+            </option>
+          </select>                    
+          <label for="Name" *ngIf="action != Action[Action.New] && action != Action[Action.Edit]" class="col-5 col-form-label">{{company.State.Name}}</label>
+        </div>        
+    </div>       
+    <div class="form-group row">         
+        <label for="CompanyType" class="col-2 col-form-label">Company Type</label>
+        <div class="col-5">
+          <select class="form-control" [(ngModel)]="company.CompanyTypeID" name="CompanyType" *ngIf="action == Action[Action.New]" disabled="disabled" required="true">
+            <option *ngFor="let companyType of companyTypes" [attr.value]="companyType.ID" [attr.selected]="companyType.ID === CompanyTypeEnum[typeId] ? true : null">
+              {{companyType.Name}}
+            </option>
+          </select>     
+          <select class="form-control" [(ngModel)]="company.CompanyTypeID" name="CompanyType" *ngIf="action == Action[Action.Edit]" disabled="disabled" required="true">
+            <option *ngFor="let companyType of companyTypes" [ngValue]="companyType.ID">
+              {{companyType.Name}}
+            </option>
+          </select>                         
+          <label for="Name" *ngIf="action != Action[Action.New] && action != Action[Action.Edit]" class="col-5 col-form-label">{{company.CompanyType.Name}}</label>
+        </div>        
+    </div>
+    <div class="form-group row" *ngIf="action != Action[Action.Detail] && action != Action[Action.Delete]">         
+        <label for="CompanyType" class="col-2 col-form-label">Logo</label>
+        <div class="col-5">
+        <label class="custom-file">
+          <input type="file" id="file" accept="image/*" class="custom-file-input" (change)="fileChange($event)">
+          <span class="custom-file-control"></span>
+        </label>
+        </div>        
+    </div>    
+    <div class="form-group row" *ngIf="action != Action[Action.Detail] && action != Action[Action.Delete]">            
+        <label *ngIf="company.Logo" for="CompanyLogo" class="col-2 col-form-label">Image</label>     
+        <div class="col-5">
+          <img *ngIf="company.Logo" name="CompanyLogo" [src]="displayImage(company.Logo)"/>          
+        </div>        
+    </div>         
+    <input type="hidden" class="form-control" placeholder="Company Logo" [(ngModel)]="company.Logo" name="Logo" *ngIf="action != Action[Action.Detail] && action != Action[Action.Delete]" required="true">                   
+    <br />
+    <button *ngIf="action == Action[Action.New]" type="submit" class="btn btn-primary">Create</button>   
+    <button *ngIf="action == Action[Action.Edit]" type="submit" class="btn btn-primary">Save</button>
+    <button *ngIf="action == Action[Action.Delete]" type="submit" class="btn btn-primary">Delete</button>     
+  </div>
+  <div class="footer-link">
+    <button *ngIf="action == Action[Action.Detail]" type="button" (click)="editDetail()" class="btn btn-sm btn-link">Edit</button><span *ngIf="action == Action[Action.Detail]"> |</span>
+    <button type="button" (click)="backToList()" class="btn btn-sm btn-link">Back to List</button>
+  </div>
+</form>

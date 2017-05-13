@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CompanyTypeEnum } from './models/enum.model';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+
+  CompanyTypeEnum = CompanyTypeEnum;
+
+  title = 'Airlines App';
+  
 }

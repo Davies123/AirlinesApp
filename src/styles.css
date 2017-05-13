@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+
+.table-airline {
+    background-color: #A7C6ED;
+    border-radius: 0px 0px 5px 5px; 
+}
+
+.form-airline {
+    background-color: #A7C6ED;
+    padding: 10px 10px 10px 10px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.footer-link {
+    padding-top: 20px;
+}
+
+.no-border {
+    background-color: #A7C6ED;
+    border: 0;
+    box-shadow: none;
+}

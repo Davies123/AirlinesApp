@@ -1,0 +1,33 @@
+<nav class="navbar">
+    <div class="h2">
+        Aircrafts
+        <button type="button" (click)="editAircraft(Action[Action.New], 0)" class="btn btn-primary btn-md float-right align-bottom">Create New Aircraft</button>
+    </div>    
+</nav>
+
+<table class="table-airline table">
+      <thead>
+          <tr>            
+            <th>Aircraft</th>
+            <th>Aircraft Model</th>
+            <th>Aircraft Description</th>
+            <th class="text-right">Seating Capacity</th>
+            <th></th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let aircraft of aircrafts">
+              <td><img [src]="displayImage(aircraft.Airplane)"/></td>
+              <td>{{aircraft.Company.Name}} {{aircraft.Name}}</td>
+              <td>{{aircraft.Description}}</td>
+              <td class="text-right">{{aircraft.Capacity}}</td>
+              <td>                
+                <div class="btn-group" role="group">  
+                    <button type="button" (click)="editAircraft(Action[Action.Edit], typeId, aircraft.ID)" class="btn btn-sm btn-link">Edit</button>|
+                    <button type="button" (click)="editAircraft(Action[Action.Detail], typeId, aircraft.ID)" class="btn btn-sm btn-link">Details</button>|
+                    <button type="button" (click)="editAircraft(Action[Action.Delete], typeId, aircraft.ID)" class="btn btn-sm btn-link">Delete</button>
+                </div>
+              </td>
+          </tr>
+      </tbody>
+  </table>
